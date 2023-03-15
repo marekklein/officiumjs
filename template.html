@@ -1,0 +1,293 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>template</title>
+  <meta name="description" content="exsurge Test Page">
+  <meta name="author" content="Fr. Matthew Spencer, O.S.J.">
+  <link href='https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700italic,400italic' rel='stylesheet'
+    type='text/css'>
+
+  <!--[if lt IE 9]>
+  <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style>
+    body {
+      padding: 3%;
+    }
+
+    #text1,
+    #textpsalmus {
+      font-size: 120%;
+      margin-block-start: 0;
+    }
+
+    #popis1 {
+      color: red;
+      font-style: italic;
+      margin-block-start: 0.3em;
+      margin-block-end: 0.2em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      text-align: center;
+    }
+
+    #psline {
+      font-size: 120%;
+      line-height: 100%;
+      margin: 6pt 0px;
+      padding-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    #psnum {
+      float: left;
+      width: 25pt;
+      text-align: right;
+    }
+
+    .settingsline {
+      width: 100%;
+      display: inline-block;
+    }
+
+    .settingsblock {
+      padding-right: 2em;
+      float: left;
+    }
+
+    .pslineclass {
+      width: 100%;
+      display: inline-block;
+      font-size: 120%;
+      line-height: 100%;
+      margin: 0px 0px 4pt 0px;
+    }
+
+    .psnumclass {
+      width: 3%;
+
+      float: left;
+      text-align: right;
+    }
+
+    .psvers {
+      width: 96%;
+
+      float: right;
+    }
+
+    #textsecret {
+      font-size: 100%;
+      font-style: italic;
+      margin: -15px 0 10px 0;
+    }
+  </style>
+</head>
+
+<body onload="updateChant()" onresize="updateChant()">
+
+  <h4>title</h4>
+
+  <div class="settingsline">
+    <div class="settingsblock">
+      <input type="radio" id="dom" name="dies" value="dom" onclick="setComplDies('dom')">
+      <label for="dom">Dominica</label><br>
+      <input type="radio" id="f2" name="dies" value="f2" onclick="setComplDies('f2')">
+      <label for="f2">Feria II</label><br>
+      <input type="radio" id="f3" name="dies" value="f3" onclick="setComplDies('f3')">
+      <label for="f3">Feria III</label><br>
+      <input type="radio" id="f4" name="dies" value="f4" onclick="setComplDies('f4')">
+      <label for="f4">Feria IV</label><br>
+      <input type="radio" id="f5" name="dies" value="f5" onclick="setComplDies('f5')">
+      <label for="f5">Feria V</label><br>
+      <input type="radio" id="f6" name="dies" value="f6" onclick="setComplDies('f6')">
+      <label for="f6">Feria VI</label><br>
+      <input type="radio" id="sab" name="dies" value="sab" onclick="setComplDies('sab')">
+      <label for="sab">Sabbato</label><br>
+    </div>
+    <div class="settingsblock">
+      <input type="radio" id="latin" name="lingua" value="latin" onclick="setComplLingua('latin')">
+      <label for="latin">Psalmodia in lingua latina</label><br>
+      <input type="radio" id="slovak" name="lingua" value="slovak" onclick="setComplLingua('slovak')">
+      <label for="slovak">Psalmódia v slovenčine</label><br>
+    </div>
+  </div>
+
+  <h1>Title</h1>
+  <h2 style="font-style: italic">subtitle</h2>
+  <br>
+
+  <!--chant-visual use-drop-cap="false" annotation="IV">(c3) PU(ei)ER(i) *() na(iji)tus(h) est(hhh) no(ih/ji)bis,(i) (;) et(ei~) fí(iji)li(hg)us(f) da(hhi)tus(h) est(h) no(hihh)bis:(efe) (:) cu(e)jus(f) im(h)pé(gi!jk)ri(ih)um(h) (,) su(h)per(h) hú(ih/ji)me(hg)rum(hhh) e(hf//hghvGF)jus:(gf) (:) et(hg) vo(h)cá(hji)bi(h)tur(hhh) no(h)men(hhh) e(highvGF)jus,(gf) (;) ma(hj)gni(i) con(eh~)sí(h)li(hhhf)i(f) An(fhf!gwh)ge(efe)lus.(e) Ps.(::) Can(ehg)tá(hi)te(i) Dó(i)mi(i)no(i) cán(ik)ti(j)cum(j) no(ji)vum:(ij) *(:) qui(ig)a(hi) mi(i)ra(i)bí(i!jwk)li(i)a(h) fe(hhh)cit.(fe) (::) Gló(ehg)ri(hi)a(i) Pa(i)tri.(i) (::) E(i) u(i!jwk) o(i) u(h) a(hhh) e.(fe) (::)</chant-visual-->
+
+  <div id="chant-container0"> </div>
+  <div id="chant-container1"> </div>
+  <p id="popis1">Lectio brevis (1. Peter 5.)</p>
+  <div id="chant-container2"> </div>
+  <br>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/document-register-element/0.5.3/document-register-element.js">/* W3C Custom Elements */</script>
+  <script type="text/javascript" src="https://ex.surge.sh/exsurge.js"></script>
+  <script type="text/javascript">
+    /* testing exsurge */
+    var ctxt = new exsurge.ChantContext();
+    ctxt.lyricTextFont = "'Crimson Text', serif";
+    ctxt.lyricTextSize *= 1.2;
+    ctxt.dropCapTextFont = ctxt.lyricTextFont;
+    ctxt.annotationTextFont = ctxt.lyricTextFont;
+    var complDies;
+    var complLingua;
+
+    //get day of liturgical calendar
+    async function load() {
+      let url = 'http://calapi.inadiutorium.cz/api/v0/la/calendars/default/today';
+      let obj = await (await fetch(url)).json();
+      //console.log(obj);
+      //console.log(obj.celebrations[0].title);
+      document.getElementById("haecdies").innerHTML = obj.celebrations[0].title;
+    }
+    load();
+    const gabc = [];
+    const annot = [];
+    const init = [];
+    //ǽ℟.℣.℣.
+    gabc[0] = "(c3)Iu(h)be(h) dom(h)ne(g) be(h)ne(h)dí(h)ce(d)re.(d) (::)";
+    annot[0] = "%V%";
+    init[0] = false;
+    gabc[1] = "(c3)No(h)ctem(h) qui(h)é(h)tam(h) et(h) fi(h)nem(g) per(f)fé(h)ctum(h) (;) con(h)cé(h)dat(h) no(h)bis(h) Dó(h)mi(h)nus(h) om(h)ní(h)po(d)tens.(d) (::) ℟.() A(g)men.(h) (::)";
+    annot[1] = "%III%";
+    init[1] = false;
+    gabc[2] = "(c3)FRa(h)tres:(h) (,) Só(h)bri(h)i(h) e(h)stó(h)te,(h) et(h) vi(h)gi(h)lá(h)te:(f) (;) qui(h)a(h) ad(h)ver(h)sá(h)ri(h)us(h) ve(h)ster(h) di(h)á(h)bo(h)lus,(h) (,) tam(h)quam(h) le(h)o(h) rú(h)gi(h)ens,(h) (,) círc(h)u(h)it,(h) quæ(h)rens(g) quem(f) dé(h)vo(h)ret:(h) (;) cu(h)i(h) re(h)sí(h)sti(h)te(h) for(h)tes(h) in(h) fi(h)de.(d) (:) Tu(h) au(g)tem(f) Dó(h)mi(h)ne(h) (,) mi(h)se(h)ré(h)re(h) no(h)bis.(d) (::) ℟() De(h)o(h) grá(h)ti(d)as.(d) (::)";
+    annot[2] = " ";
+    init[2] = true;
+
+    //console.log(gabc[1]);
+    //
+    // to use canvas drawing, you should use the canvas object belonging to the
+    // canvas, resizing it as below. The reason for custom resizing is that the
+    // canvas drawing takes into consideration screen dpi in order to render
+    // the highest possibly quality on lots of different screens.
+    //
+    //
+    // document.querySelector('body').appendChild(ctxt.canvas);
+    // ctxt.setCanvasSize(1280, 720);
+    //
+    // To render to the canvas, you can use a standard animation loop, which
+    // draws to the canvas at the desired intervals, e.g.:
+    //
+    //
+    // function animloop() {
+    //   requestAnimationFrame(animloop);
+    //
+    //   if (score)
+    //     score.draw(ctxt);
+    // };
+    //
+    function updateChant() {
+      initCompl();
+      //console.log(gabc[0]);
+      for (let i = 0; i < gabc.length; i++) {
+        text = "chant-container" + i;
+        var chantContainer = document.getElementById(text);
+        mappings = exsurge.Gabc.createMappingsFromSource(ctxt, gabc[i]);
+        score = new exsurge.ChantScore(ctxt, mappings, init[i]);
+        if (init[i]) {
+          score.annotation = new exsurge.Annotation(ctxt, annot[i]);
+        }
+        layoutChant2(score, chantContainer);
+      };
+
+    }
+    function layoutChant2(score, chantContainer) {
+      score.performLayoutAsync(ctxt, function () {
+        score.layoutChantLines(ctxt, chantContainer.clientWidth, function () {
+          // render the score to svg code
+          chantContainer.innerHTML = score.createSvg(ctxt);
+        });
+      });
+    };
+    function layoutChant() {
+      // perform layout on the chant
+      score.performLayoutAsync(ctxt, function () {
+        score.layoutChantLines(ctxt, chantContainer.clientWidth, function () {
+          // render the score to svg code
+          chantContainer.innerHTML = score.createSvg(ctxt);
+        });
+      });
+    }
+    function initCompl() {
+      complLingua = "latin";
+      var date = new Date();
+      var dayOfWeek = date.getDay(); // 0 is Sunday, 1 is Monday, etc...
+      //console.log(dayOfWeek);
+      switch (dayOfWeek) {
+        case 0:
+          complDies = "dom";
+          break;
+        case 1:
+          complDies = "f2";
+          break;
+        case 2:
+          complDies = "f3";
+          break;
+        case 3:
+          complDies = "f4";
+          break;
+        case 4:
+          complDies = "f5";
+          break;
+        case 5:
+          complDies = "f6";
+          complLingua = "slovak";
+          break;
+        default:
+          complDies = "sab";
+      }
+      document.getElementById(complDies).checked = "checked";
+      document.getElementById(complLingua).checked = "checked";
+      hideComplElements()
+    }
+    function setComplDies(dies) {
+      complDies = dies;
+      console.log(dies);
+      if (dies == 'f6') {
+        console.log(dies);
+        complLingua = "slovak";
+        document.getElementById(complLingua).checked = "checked";
+      };
+      hideComplElements();
+    }
+    function setComplLingua(lingua) {
+      complLingua = lingua;
+      hideComplElements();
+    }
+    function hideComplElements() {
+      const collection = document.getElementsByClassName("dies");
+      for (let i = 0; i < collection.length; i++) {
+        if (!collection[i].classList.contains(complDies)) {
+          collection[i].style.display = "none";
+        } else {
+          collection[i].style.display = "block";
+        }
+      }
+      const collection2 = document.getElementsByClassName("lingua");
+      for (let i = 0; i < collection2.length; i++) {
+        if (!collection2[i].classList.contains(complLingua)) {
+          collection2[i].style.display = "none";
+        } else {
+          collection2[i].style.display = "block";
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
